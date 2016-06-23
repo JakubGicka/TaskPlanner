@@ -22,20 +22,20 @@ class __TwigTemplate_1aff74c30050a64b6405f42a9ec18386ba012bfe7894f9d0e8ceb22c266
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_43d18fd1b0cfee71b0015bbd7dda3fce45c762a440e9f28d2f9f86bea54c5ac4 = $this->env->getExtension("native_profiler");
-        $__internal_43d18fd1b0cfee71b0015bbd7dda3fce45c762a440e9f28d2f9f86bea54c5ac4->enter($__internal_43d18fd1b0cfee71b0015bbd7dda3fce45c762a440e9f28d2f9f86bea54c5ac4_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "default/index.html.twig"));
+        $__internal_f030660ad8a225f4ac644cf41675c3ad6b9c2f7e4537477fc519ac96aec97310 = $this->env->getExtension("native_profiler");
+        $__internal_f030660ad8a225f4ac644cf41675c3ad6b9c2f7e4537477fc519ac96aec97310->enter($__internal_f030660ad8a225f4ac644cf41675c3ad6b9c2f7e4537477fc519ac96aec97310_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "default/index.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_43d18fd1b0cfee71b0015bbd7dda3fce45c762a440e9f28d2f9f86bea54c5ac4->leave($__internal_43d18fd1b0cfee71b0015bbd7dda3fce45c762a440e9f28d2f9f86bea54c5ac4_prof);
+        $__internal_f030660ad8a225f4ac644cf41675c3ad6b9c2f7e4537477fc519ac96aec97310->leave($__internal_f030660ad8a225f4ac644cf41675c3ad6b9c2f7e4537477fc519ac96aec97310_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_aede7507591ca39b5c77c008dd53216c16cf6b7e92afcf4ccbd202416215f7d9 = $this->env->getExtension("native_profiler");
-        $__internal_aede7507591ca39b5c77c008dd53216c16cf6b7e92afcf4ccbd202416215f7d9->enter($__internal_aede7507591ca39b5c77c008dd53216c16cf6b7e92afcf4ccbd202416215f7d9_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_28bbf66e10b6ab7058557f91c3bdd0908d55c9400b28eaa687b6fe398fdadf9c = $this->env->getExtension("native_profiler");
+        $__internal_28bbf66e10b6ab7058557f91c3bdd0908d55c9400b28eaa687b6fe398fdadf9c->enter($__internal_28bbf66e10b6ab7058557f91c3bdd0908d55c9400b28eaa687b6fe398fdadf9c_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
         echo "    
@@ -53,23 +53,24 @@ class __TwigTemplate_1aff74c30050a64b6405f42a9ec18386ba012bfe7894f9d0e8ceb22c266
             <li>Komentowania swoich planów</li>
         </ul>
         <h3><a href=\"http://192.168.33.22:8080/register/\">Rejestracja użytkownika</a></h3>
+        <h3><a href=\"http://192.168.33.22:8080/create\">Dodanie zadania</a></h3>
         
         </div>
     </div>
                 
 ";
         
-        $__internal_aede7507591ca39b5c77c008dd53216c16cf6b7e92afcf4ccbd202416215f7d9->leave($__internal_aede7507591ca39b5c77c008dd53216c16cf6b7e92afcf4ccbd202416215f7d9_prof);
+        $__internal_28bbf66e10b6ab7058557f91c3bdd0908d55c9400b28eaa687b6fe398fdadf9c->leave($__internal_28bbf66e10b6ab7058557f91c3bdd0908d55c9400b28eaa687b6fe398fdadf9c_prof);
 
     }
 
-    // line 26
+    // line 27
     public function block_stylesheets($context, array $blocks = array())
     {
-        $__internal_ecc378fd6c3562f0e69ece25d234fd4b36771909434bd4347fba5263717e0c52 = $this->env->getExtension("native_profiler");
-        $__internal_ecc378fd6c3562f0e69ece25d234fd4b36771909434bd4347fba5263717e0c52->enter($__internal_ecc378fd6c3562f0e69ece25d234fd4b36771909434bd4347fba5263717e0c52_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylesheets"));
+        $__internal_10c846ac2c013e39b9c5359f052a01a0d8e899ea3533faac7cc803b7674bfaa3 = $this->env->getExtension("native_profiler");
+        $__internal_10c846ac2c013e39b9c5359f052a01a0d8e899ea3533faac7cc803b7674bfaa3->enter($__internal_10c846ac2c013e39b9c5359f052a01a0d8e899ea3533faac7cc803b7674bfaa3_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylesheets"));
 
-        // line 27
+        // line 28
         echo "<style>
     body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
     h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
@@ -98,7 +99,7 @@ class __TwigTemplate_1aff74c30050a64b6405f42a9ec18386ba012bfe7894f9d0e8ceb22c266
 </style>
 ";
         
-        $__internal_ecc378fd6c3562f0e69ece25d234fd4b36771909434bd4347fba5263717e0c52->leave($__internal_ecc378fd6c3562f0e69ece25d234fd4b36771909434bd4347fba5263717e0c52_prof);
+        $__internal_10c846ac2c013e39b9c5359f052a01a0d8e899ea3533faac7cc803b7674bfaa3->leave($__internal_10c846ac2c013e39b9c5359f052a01a0d8e899ea3533faac7cc803b7674bfaa3_prof);
 
     }
 
@@ -114,7 +115,7 @@ class __TwigTemplate_1aff74c30050a64b6405f42a9ec18386ba012bfe7894f9d0e8ceb22c266
 
     public function getDebugInfo()
     {
-        return array (  73 => 27,  67 => 26,  41 => 4,  35 => 3,  11 => 1,);
+        return array (  74 => 28,  68 => 27,  41 => 4,  35 => 3,  11 => 1,);
     }
 }
 /* {% extends 'base.html.twig' %}*/
@@ -135,6 +136,7 @@ class __TwigTemplate_1aff74c30050a64b6405f42a9ec18386ba012bfe7894f9d0e8ceb22c266
 /*             <li>Komentowania swoich planów</li>*/
 /*         </ul>*/
 /*         <h3><a href="http://192.168.33.22:8080/register/">Rejestracja użytkownika</a></h3>*/
+/*         <h3><a href="http://192.168.33.22:8080/create">Dodanie zadania</a></h3>*/
 /*         */
 /*         </div>*/
 /*     </div>*/

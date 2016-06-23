@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for task in tasks %}
+        {{ include(':Task:show.html.twig', {'task': task} )}}
+    {% else %}
+        <p>No tasks found</p>
+    {% endfor %}
+{% endblock %}
+
+

@@ -136,6 +136,27 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
         }
 
+        if (0 === strpos($pathinfo, '/task')) {
+            // app_task_create
+            if ($pathinfo === '/task/create') {
+                return array (  '_controller' => 'AppBundle\\Controller\\TaskController::createAction',  '_route' => 'app_task_create',);
+            }
+
+            if (0 === strpos($pathinfo, '/task/show')) {
+                // app_task_show
+                if (preg_match('#^/task/show/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'app_task_show')), array (  '_controller' => 'AppBundle\\Controller\\TaskController::showAction',));
+                }
+
+                // app_task_showall
+                if ($pathinfo === '/task/showAll') {
+                    return array (  '_controller' => 'AppBundle\\Controller\\TaskController::showAllAction',  '_route' => 'app_task_showall',);
+                }
+
+            }
+
+        }
+
         if (0 === strpos($pathinfo, '/log')) {
             if (0 === strpos($pathinfo, '/login')) {
                 // fos_user_security_login
