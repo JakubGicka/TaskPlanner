@@ -137,6 +137,11 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         if (0 === strpos($pathinfo, '/task')) {
+            // app_task_new
+            if ($pathinfo === '/task/new') {
+                return array (  '_controller' => 'AppBundle\\Controller\\TaskController::newAction',  '_route' => 'app_task_new',);
+            }
+
             // app_task_create
             if ($pathinfo === '/task/create') {
                 return array (  '_controller' => 'AppBundle\\Controller\\TaskController::createAction',  '_route' => 'app_task_create',);
@@ -153,6 +158,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     return array (  '_controller' => 'AppBundle\\Controller\\TaskController::showAllAction',  '_route' => 'app_task_showall',);
                 }
 
+            }
+
+            // app_task_edit
+            if (0 === strpos($pathinfo, '/task/edit') && preg_match('#^/task/edit/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'app_task_edit')), array (  '_controller' => 'AppBundle\\Controller\\TaskController::editAction',));
+            }
+
+            // app_task_comment
+            if (0 === strpos($pathinfo, '/task/comment') && preg_match('#^/task/comment/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'app_task_comment')), array (  '_controller' => 'AppBundle\\Controller\\TaskController::commentAction',));
             }
 
         }

@@ -48,6 +48,14 @@ class Task
      * @ORM\Column(name="priority", type="string", length=255)
      */
     private $priority;
+    
+    /**
+     *
+     * @var string
+     * 
+     * @ORM\Column(name="comment", type="string", length=255)
+     */
+    private $comment;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="tasks")
@@ -155,4 +163,38 @@ class Task
     {
         return $this->priority;
     }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     * @return Task
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+    
+    /**
+     * Is the given User the author of this Task?
+     *
+     * @return bool
+     */
+    public function isAuthor(User $user = null)
+    {
+        return $user && $user->getTask() == $this->getUser();
+    }
+    
 }

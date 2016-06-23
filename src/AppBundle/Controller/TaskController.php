@@ -9,12 +9,35 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * @Route("/task")
  */
 class TaskController extends Controller
 {   
+    /**
+     * @Route("/new")
+     * @Template()
+     */
+    public function newAction()
+    {
+        $task = new Task();
+        
+        $form = $this
+                ->createFormBuilder($task)
+                ->setAction($this->generateUrl('Task_create'))  //jeśli nie ma action, to wysyła się na tem sam adres
+                ->add('name')
+                ->add('description')
+                ->add('deadline')
+                ->add('priority')
+                ->add('submit', 'submit')
+                ->getForm();
+        
+        return ['form' => $form->createView()];
+        
+    }
+    
     /**
      * @Route("/create")
      * @Template("Task/create.html.twig")
@@ -26,7 +49,7 @@ class TaskController extends Controller
         
         $form = $this
             ->createFormBuilder($task)
-            //->setAction($this->generateUrl('default_create'))
+            //->setAction($this->generateUrl('Task_create'))
             ->add('name')
             ->add('description')
             ->add('deadline')
@@ -82,8 +105,79 @@ class TaskController extends Controller
                 
         return ['tasks' => $tasks];
     }
+    //@Security("post.isAuthor(user)")
+    /**
+     * @Route("/edit/{id}")
+     * @ParamConverter("task", class="AppBundle:Task")
+     * @Template("Task/edit.html.twig")
+     */
+    public function editAction(Task $task, Request $request)   
+    {
+        $form = $this
+            ->createFormBuilder($task)
+            //->setAction($this->generateUrl('Task_edit'))
+            ->add('name')
+            ->add('description')
+            ->add('deadline')
+            ->add('priority')
+            ->add('submit', 'submit')
+            ->getForm();
+        
+        $form->handleRequest($request);   
+        
+        if ($form->isValid()) {
+            $em = $this
+                ->getDoctrine()
+                ->getManager();
+            
+            $user = $this->getUser();
+            $user->addTask($task);
+            
+            $em->persist($task);
+            $em->persist($user);
+            $em->flush();
+            
+            return $this->redirectToRoute('app_task_show', ['id' => $task->getId()]); 
+        }
+        
+        return ['form' => $form->createView()];
+        
+    }
     
-    
+    /**
+     * @Route("/comment/{id}")
+     * @ParamConverter("task", class="AppBundle:Task")
+     * @Template("Task/comment.html.twig")
+     */
+    public function commentAction(Task $task, Request $request)
+    {
+        $form = $this
+            ->createFormBuilder($task)
+            //->setAction($this->generateUrl('Task_comment'))
+            ->add('comment')
+            ->add('submit', 'submit')
+            ->getForm();
+        
+        $form->handleRequest($request);   
+        
+        if ($form->isValid()) {
+            $em = $this
+                ->getDoctrine()
+                ->getManager();
+            
+            $user = $this->getUser();
+            $user->addTask($task);
+            
+            $em->persist($task);
+            $em->persist($user);
+            $em->flush();
+            
+            return $this->redirectToRoute('app_task_show', ['id' => $task->getId()]); 
+        }
+        
+        return ['form' => $form->createView()];
+        
+    }
     
 }
     

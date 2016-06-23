@@ -1,10 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}app:Resources:default:show{% endblock %}
+
+{% block body %}
 <p>
+    <p>Id: {{task.id}}</p>
     <p>Name: {{task.name}}</p>
     <p>Description: {{task.description}}</p>
     <p>Deadline: {{task.deadline|date('Y-m-d')}}</p>
     <p>Priority: {{task.priority}}</p>
+    <p>Comment: {{task.comment}}</p>
     {% if task.user is not null %}
         <p>User: {{ task.user.username }}</p>
     {% endif %}
+    <a href="{{ path('app_task_edit', {'id': task.id}) }}">Edytuj zadanie</a>
+    <br>
+    <a href="{{ path('app_task_comment', {'id': task.id}) }}">Skomentuj zadanie</a>
 </p>
+{% endblock %}
 
