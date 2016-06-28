@@ -19,6 +19,7 @@ class TaskController extends Controller
     /**
      * @Route("/new")
      * @Template()
+     * @Security("has_role('ROLE_USER')")
      */
     public function newAction()
     {
@@ -27,10 +28,21 @@ class TaskController extends Controller
         $form = $this
                 ->createFormBuilder($task)
                 ->setAction($this->generateUrl('Task_create'))  //jeśli nie ma action, to wysyła się na tem sam adres
+                ->add('category', 'choice', array('label'=>'Category',
+                'choices'=>array('Home'=>'Home', 
+                    'Job'=>'Job', 
+                    'Family'=>'Family',
+                    'Friends'=>'Friends',
+                    'Garden'=>'Garden',
+                    'Hobby'=>'Hobby'
+                    ),))
                 ->add('name')
                 ->add('description')
                 ->add('deadline')
-                ->add('priority')
+                ->add('priority', 'choice', array('label'=>'Priority',
+                'choices'=>array('Pilne'=>'Pilne', 'Średnio ważne'=>'Średnio ważne', 'Mało istotne'=>'Mało istotne'),))
+                ->add('status', 'choice', array('label'=>'Status',
+                'choices'=>array('Do zrobienia'=>'Do zrobienia', 'W trakcie'=>'W trakcie', 'Zrobione'=>'Zrobione'),))
                 ->add('submit', 'submit')
                 ->getForm();
         
@@ -50,10 +62,21 @@ class TaskController extends Controller
         $form = $this
             ->createFormBuilder($task)
             //->setAction($this->generateUrl('Task_create'))
+            ->add('category', 'choice', array('label'=>'Category',
+                'choices'=>array('Home'=>'Home', 
+                    'Job'=>'Job', 
+                    'Family'=>'Family',
+                    'Friends'=>'Friends',
+                    'Garden'=>'Garden',
+                    'Hobby'=>'Hobby'
+                    ),))
             ->add('name')
             ->add('description')
             ->add('deadline')
-            ->add('priority')
+            ->add('priority', 'choice', array('label'=>'Priority',
+                'choices'=>array('Pilne'=>'Pilne', 'Średnio ważne'=>'Średnio ważne', 'Mało istotne'=>'Mało istotne'),))
+            ->add('status', 'choice', array('label'=>'Status',
+                'choices'=>array('Do zrobienia'=>'Do zrobienia', 'W trakcie'=>'W trakcie', 'Zrobione'=>'Zrobione'),))
             ->add('submit', 'submit')
             ->getForm();
         
@@ -105,11 +128,12 @@ class TaskController extends Controller
                 
         return ['tasks' => $tasks];
     }
-    //@Security("post.isAuthor(user)")
+    
     /**
      * @Route("/edit/{id}")
      * @ParamConverter("task", class="AppBundle:Task")
      * @Template("Task/edit.html.twig")
+     * @Security("task.isAuthor(user)")
      */
     public function editAction(Task $task, Request $request)   
     {
@@ -119,7 +143,11 @@ class TaskController extends Controller
             ->add('name')
             ->add('description')
             ->add('deadline')
-            ->add('priority')
+            ->add('priority', 'choice', array('label'=>'Priority',
+                'choices'=>array('Pilne'=>'Pilne', 'Średnio ważne'=>'Średnio ważne', 'Mało istotne'=>'Mało istotne'),))
+            ->add('status', 'choice', array('label'=>'Status',
+                'choices'=>array('Do zrobienia'=>'Do zrobienia', 'W trakcie'=>'W trakcie', 'Zrobione'=>'Zrobione'),))
+            //->add('category')
             ->add('submit', 'submit')
             ->getForm();
         
@@ -148,6 +176,7 @@ class TaskController extends Controller
      * @Route("/comment/{id}")
      * @ParamConverter("task", class="AppBundle:Task")
      * @Template("Task/comment.html.twig")
+     * @Security("task.isAuthor(user)")
      */
     public function commentAction(Task $task, Request $request)
     {

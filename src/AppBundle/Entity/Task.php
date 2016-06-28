@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Task
  *
@@ -50,18 +51,33 @@ class Task
     private $priority;
     
     /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255)
+     */
+    private $status;
+    
+    /**
      *
      * @var string
      * 
      * @ORM\Column(name="comment", type="string", length=255)
      */
-    private $comment;
+    private $comment = "";
 
+    
+    
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="tasks")
      */
     private $user;
 
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="tasks")
+     */
+    private $category;
+    
     /**
      * Get id
      *
@@ -194,7 +210,7 @@ class Task
      */
     public function isAuthor(User $user = null)
     {
-        return $user && $user->getTask() == $this->getUser();
+        return $user && $user->getId() == $this->getUser()->getId();
     }
     
 
@@ -219,5 +235,51 @@ class Task
     public function getComment()
     {
         return $this->comment;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     * @return Task
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \AppBundle\Entity\Category $category
+     * @return Task
+     */
+    public function setCategory(\AppBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

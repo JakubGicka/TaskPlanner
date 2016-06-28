@@ -7,6 +7,7 @@ namespace AppBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
 * @ORM\Entity
@@ -23,6 +24,12 @@ class User extends BaseUser
     protected $id;
     
     /**
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="user")
+     * @Assert\Choice(max=1, minMessage = "You must not choose more than one option.")
+     */
+    private $categories;
+    
+    /**
      * @ORM\OneToMany(targetEntity="Task", mappedBy="user")
      */
     private $tasks;
@@ -32,6 +39,7 @@ class User extends BaseUser
         parent::__construct();
 
         $this->tasks = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
 
@@ -67,5 +75,39 @@ class User extends BaseUser
     public function getTasks()
     {
         return $this->tasks;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param \AppBundle\Entity\Category $categories
+     * @return User
+     */
+    public function addCategory(\AppBundle\Entity\Category $categories)
+    {
+        $this->categories[] = $categories;
+        $category->setUser($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \AppBundle\Entity\Category $categories
+     */
+    public function removeCategory(\AppBundle\Entity\Category $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }
