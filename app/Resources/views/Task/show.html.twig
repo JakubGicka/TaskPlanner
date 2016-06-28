@@ -1,14 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}app:Resources:default:show{% endblock %}
+{% block title %}app:Resources:Task:show{% endblock %}
 
 {% block body %}
 <p>
+    <p>Category: {{task.category}}</p>
     <p>Id: {{task.id}}</p>
     <p>Name: {{task.name}}</p>
     <p>Description: {{task.description}}</p>
     <p>Deadline: {{task.deadline|date('Y-m-d')}}</p>
     <p>Priority: {{task.priority}}</p>
+    <p>Status: {{task.status}}</p>
     <p>Comment: {{task.comment}}</p>
     {% if task.user is not null %}
         <p>User: {{ task.user.username }}</p>

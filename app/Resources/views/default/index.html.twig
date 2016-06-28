@@ -5,6 +5,7 @@
     <div id="wrapper">
         <div id="container">
             <div id="welcome">
+                <h5><a href="{{ path('fos_user_security_login') }}">Zaloguj się</a></h5>
                 <h1><span>Task Planner</span></h1>
             </div>
         <h2><span>Witaj na stronie Task Planner.</span></h2>
@@ -15,8 +16,10 @@
             <li>Wyświetlania swoich planów</li>
             <li>Komentowania swoich planów</li>
         </ul>
-        <h3><a href="http://192.168.33.22:8080/register/">Rejestracja użytkownika</a></h3>
-        <h3><a href="http://192.168.33.22:8080/create">Dodanie zadania</a></h3>
+        <h4><a href="{{ path('fos_user_registration_register') }}">Zarejestruj się</a></h4>
+        <h4><a href="{{ path('app_task_create') }}">Dodaj zadanie</a></h4>
+        <h4><a href="{{ path('app_task_showall') }}">Wyświetl swoje zadania</a></h4>
+        
         
         </div>
     </div>

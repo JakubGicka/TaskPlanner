@@ -22,26 +22,30 @@ class __TwigTemplate_1aff74c30050a64b6405f42a9ec18386ba012bfe7894f9d0e8ceb22c266
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_f030660ad8a225f4ac644cf41675c3ad6b9c2f7e4537477fc519ac96aec97310 = $this->env->getExtension("native_profiler");
-        $__internal_f030660ad8a225f4ac644cf41675c3ad6b9c2f7e4537477fc519ac96aec97310->enter($__internal_f030660ad8a225f4ac644cf41675c3ad6b9c2f7e4537477fc519ac96aec97310_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "default/index.html.twig"));
+        $__internal_8b9879418944119150e2f57da830f220090116ab5a164f167178d32c962dcc5e = $this->env->getExtension("native_profiler");
+        $__internal_8b9879418944119150e2f57da830f220090116ab5a164f167178d32c962dcc5e->enter($__internal_8b9879418944119150e2f57da830f220090116ab5a164f167178d32c962dcc5e_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "default/index.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_f030660ad8a225f4ac644cf41675c3ad6b9c2f7e4537477fc519ac96aec97310->leave($__internal_f030660ad8a225f4ac644cf41675c3ad6b9c2f7e4537477fc519ac96aec97310_prof);
+        $__internal_8b9879418944119150e2f57da830f220090116ab5a164f167178d32c962dcc5e->leave($__internal_8b9879418944119150e2f57da830f220090116ab5a164f167178d32c962dcc5e_prof);
 
     }
 
     // line 3
     public function block_body($context, array $blocks = array())
     {
-        $__internal_28bbf66e10b6ab7058557f91c3bdd0908d55c9400b28eaa687b6fe398fdadf9c = $this->env->getExtension("native_profiler");
-        $__internal_28bbf66e10b6ab7058557f91c3bdd0908d55c9400b28eaa687b6fe398fdadf9c->enter($__internal_28bbf66e10b6ab7058557f91c3bdd0908d55c9400b28eaa687b6fe398fdadf9c_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_ae2e2138ea7c584776f2cd5a16b9267fba3844775fabc98244e7ac8c973be34b = $this->env->getExtension("native_profiler");
+        $__internal_ae2e2138ea7c584776f2cd5a16b9267fba3844775fabc98244e7ac8c973be34b->enter($__internal_ae2e2138ea7c584776f2cd5a16b9267fba3844775fabc98244e7ac8c973be34b_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 4
         echo "    
     <div id=\"wrapper\">
         <div id=\"container\">
             <div id=\"welcome\">
+                <h5><a href=\"";
+        // line 8
+        echo $this->env->getExtension('routing')->getPath("fos_user_security_login");
+        echo "\">Zaloguj się</a></h5>
                 <h1><span>Task Planner</span></h1>
             </div>
         <h2><span>Witaj na stronie Task Planner.</span></h2>
@@ -52,25 +56,36 @@ class __TwigTemplate_1aff74c30050a64b6405f42a9ec18386ba012bfe7894f9d0e8ceb22c266
             <li>Wyświetlania swoich planów</li>
             <li>Komentowania swoich planów</li>
         </ul>
-        <h3><a href=\"http://192.168.33.22:8080/register/\">Rejestracja użytkownika</a></h3>
-        <h3><a href=\"http://192.168.33.22:8080/create\">Dodanie zadania</a></h3>
+        <h4><a href=\"";
+        // line 19
+        echo $this->env->getExtension('routing')->getPath("fos_user_registration_register");
+        echo "\">Zarejestruj się</a></h4>
+        <h4><a href=\"";
+        // line 20
+        echo $this->env->getExtension('routing')->getPath("app_task_create");
+        echo "\">Dodaj zadanie</a></h4>
+        <h4><a href=\"";
+        // line 21
+        echo $this->env->getExtension('routing')->getPath("app_task_showall");
+        echo "\">Wyświetl swoje zadania</a></h4>
+        
         
         </div>
     </div>
                 
 ";
         
-        $__internal_28bbf66e10b6ab7058557f91c3bdd0908d55c9400b28eaa687b6fe398fdadf9c->leave($__internal_28bbf66e10b6ab7058557f91c3bdd0908d55c9400b28eaa687b6fe398fdadf9c_prof);
+        $__internal_ae2e2138ea7c584776f2cd5a16b9267fba3844775fabc98244e7ac8c973be34b->leave($__internal_ae2e2138ea7c584776f2cd5a16b9267fba3844775fabc98244e7ac8c973be34b_prof);
 
     }
 
-    // line 27
+    // line 30
     public function block_stylesheets($context, array $blocks = array())
     {
-        $__internal_10c846ac2c013e39b9c5359f052a01a0d8e899ea3533faac7cc803b7674bfaa3 = $this->env->getExtension("native_profiler");
-        $__internal_10c846ac2c013e39b9c5359f052a01a0d8e899ea3533faac7cc803b7674bfaa3->enter($__internal_10c846ac2c013e39b9c5359f052a01a0d8e899ea3533faac7cc803b7674bfaa3_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylesheets"));
+        $__internal_d4bac7380f77c77857d1aafce6040c45fa5cc3bd8870717a47a92d73140543bd = $this->env->getExtension("native_profiler");
+        $__internal_d4bac7380f77c77857d1aafce6040c45fa5cc3bd8870717a47a92d73140543bd->enter($__internal_d4bac7380f77c77857d1aafce6040c45fa5cc3bd8870717a47a92d73140543bd_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "stylesheets"));
 
-        // line 28
+        // line 31
         echo "<style>
     body { background: #F5F5F5; font: 18px/1.5 sans-serif; }
     h1, h2 { line-height: 1.2; margin: 0 0 .5em; }
@@ -99,7 +114,7 @@ class __TwigTemplate_1aff74c30050a64b6405f42a9ec18386ba012bfe7894f9d0e8ceb22c266
 </style>
 ";
         
-        $__internal_10c846ac2c013e39b9c5359f052a01a0d8e899ea3533faac7cc803b7674bfaa3->leave($__internal_10c846ac2c013e39b9c5359f052a01a0d8e899ea3533faac7cc803b7674bfaa3_prof);
+        $__internal_d4bac7380f77c77857d1aafce6040c45fa5cc3bd8870717a47a92d73140543bd->leave($__internal_d4bac7380f77c77857d1aafce6040c45fa5cc3bd8870717a47a92d73140543bd_prof);
 
     }
 
@@ -115,7 +130,7 @@ class __TwigTemplate_1aff74c30050a64b6405f42a9ec18386ba012bfe7894f9d0e8ceb22c266
 
     public function getDebugInfo()
     {
-        return array (  74 => 28,  68 => 27,  41 => 4,  35 => 3,  11 => 1,);
+        return array (  89 => 31,  83 => 30,  69 => 21,  65 => 20,  61 => 19,  47 => 8,  41 => 4,  35 => 3,  11 => 1,);
     }
 }
 /* {% extends 'base.html.twig' %}*/
@@ -125,6 +140,7 @@ class __TwigTemplate_1aff74c30050a64b6405f42a9ec18386ba012bfe7894f9d0e8ceb22c266
 /*     <div id="wrapper">*/
 /*         <div id="container">*/
 /*             <div id="welcome">*/
+/*                 <h5><a href="{{ path('fos_user_security_login') }}">Zaloguj się</a></h5>*/
 /*                 <h1><span>Task Planner</span></h1>*/
 /*             </div>*/
 /*         <h2><span>Witaj na stronie Task Planner.</span></h2>*/
@@ -135,8 +151,10 @@ class __TwigTemplate_1aff74c30050a64b6405f42a9ec18386ba012bfe7894f9d0e8ceb22c266
 /*             <li>Wyświetlania swoich planów</li>*/
 /*             <li>Komentowania swoich planów</li>*/
 /*         </ul>*/
-/*         <h3><a href="http://192.168.33.22:8080/register/">Rejestracja użytkownika</a></h3>*/
-/*         <h3><a href="http://192.168.33.22:8080/create">Dodanie zadania</a></h3>*/
+/*         <h4><a href="{{ path('fos_user_registration_register') }}">Zarejestruj się</a></h4>*/
+/*         <h4><a href="{{ path('app_task_create') }}">Dodaj zadanie</a></h4>*/
+/*         <h4><a href="{{ path('app_task_showall') }}">Wyświetl swoje zadania</a></h4>*/
+/*         */
 /*         */
 /*         </div>*/
 /*     </div>*/

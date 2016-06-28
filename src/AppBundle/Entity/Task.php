@@ -74,7 +74,10 @@ class Task
 
     
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="tasks")
+     * 
+     * @var string
+     * 
+     * @ORM\Column(name="category", type="string", length=255)
      */
     private $category;
     
@@ -263,10 +266,10 @@ class Task
     /**
      * Set category
      *
-     * @param \AppBundle\Entity\Category $category
+     * @param string $category
      * @return Task
      */
-    public function setCategory(\AppBundle\Entity\Category $category = null)
+    public function setCategory($category)
     {
         $this->category = $category;
 
@@ -276,7 +279,7 @@ class Task
     /**
      * Get category
      *
-     * @return \AppBundle\Entity\Category 
+     * @return string
      */
     public function getCategory()
     {
