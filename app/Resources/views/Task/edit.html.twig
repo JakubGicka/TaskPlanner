@@ -3,6 +3,10 @@
 {% block title %}app:Resources:Task:edit{% endblock %}
 
 {% block body %}
-    {{ form(form) }}
+    
+    {% if "now"|date('Y-m-d') > deadline.date|date('Y-m-d') %}
+        {{ form(form) }}
+    {% endif %}
+    
 {% endblock %}
 
