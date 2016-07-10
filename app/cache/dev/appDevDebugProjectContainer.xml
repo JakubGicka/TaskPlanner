@@ -132,7 +132,24 @@
     <parameter key="templating.loader.cache.path">null</parameter>
     <parameter key="templating.engines" type="collection">
       <parameter>twig</parameter>
+      <parameter>php</parameter>
     </parameter>
+    <parameter key="templating.engine.php.class">Symfony\Bundle\FrameworkBundle\Templating\PhpEngine</parameter>
+    <parameter key="templating.helper.slots.class">Symfony\Component\Templating\Helper\SlotsHelper</parameter>
+    <parameter key="templating.helper.actions.class">Symfony\Bundle\FrameworkBundle\Templating\Helper\ActionsHelper</parameter>
+    <parameter key="templating.helper.request.class">Symfony\Bundle\FrameworkBundle\Templating\Helper\RequestHelper</parameter>
+    <parameter key="templating.helper.session.class">Symfony\Bundle\FrameworkBundle\Templating\Helper\SessionHelper</parameter>
+    <parameter key="templating.helper.code.class">Symfony\Bundle\FrameworkBundle\Templating\Helper\CodeHelper</parameter>
+    <parameter key="templating.helper.translator.class">Symfony\Bundle\FrameworkBundle\Templating\Helper\TranslatorHelper</parameter>
+    <parameter key="templating.helper.form.class">Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper</parameter>
+    <parameter key="templating.helper.stopwatch.class">Symfony\Bundle\FrameworkBundle\Templating\Helper\StopwatchHelper</parameter>
+    <parameter key="templating.form.engine.class">Symfony\Component\Form\Extension\Templating\TemplatingRendererEngine</parameter>
+    <parameter key="templating.form.renderer.class">Symfony\Component\Form\FormRenderer</parameter>
+    <parameter key="templating.globals.class">Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables</parameter>
+    <parameter key="templating.helper.form.resources" type="collection">
+      <parameter>FrameworkBundle:Form</parameter>
+    </parameter>
+    <parameter key="debug.templating.engine.php.class">Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine</parameter>
     <parameter key="validator.class">Symfony\Component\Validator\Validator\ValidatorInterface</parameter>
     <parameter key="validator.builder.class">Symfony\Component\Validator\ValidatorBuilderInterface</parameter>
     <parameter key="validator.builder.factory.class">Symfony\Component\Validator\Validation</parameter>
@@ -790,10 +807,6 @@
         <argument>fragment.renderer.hinclude</argument>
       </call>
       <call method="addRendererService">
-        <argument>hinclude</argument>
-        <argument>fragment.renderer.hinclude</argument>
-      </call>
-      <call method="addRendererService">
         <argument>esi</argument>
         <argument>fragment.renderer.esi</argument>
       </call>
@@ -812,8 +825,7 @@
     </service>
     <service id="fragment.renderer.hinclude" class="Symfony\Component\HttpKernel\Fragment\HIncludeFragmentRenderer">
       <tag name="kernel.fragment_renderer" alias="hinclude"/>
-      <tag name="kernel.fragment_renderer" alias="hinclude"/>
-      <argument type="service" id="twig"/>
+      <argument type="service" id="templating"/>
       <argument type="service" id="uri_signer"/>
       <argument>null</argument>
       <call method="setFragmentPath">
@@ -1668,6 +1680,54 @@
       <tag name="templating.helper" alias="router"/>
       <argument type="service" id="router"/>
     </service>
+    <service id="templating.helper.slots" class="Symfony\Component\Templating\Helper\SlotsHelper">
+      <tag name="templating.helper" alias="slots"/>
+    </service>
+    <service id="templating.helper.request" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\RequestHelper">
+      <tag name="templating.helper" alias="request"/>
+      <argument type="service" id="request_stack"/>
+    </service>
+    <service id="templating.helper.session" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\SessionHelper">
+      <tag name="templating.helper" alias="session"/>
+      <argument type="service" id="request_stack"/>
+    </service>
+    <service id="templating.helper.actions" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\ActionsHelper">
+      <tag name="templating.helper" alias="actions"/>
+      <argument type="service" id="fragment.handler"/>
+    </service>
+    <service id="templating.helper.code" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\CodeHelper">
+      <tag name="templating.helper" alias="code"/>
+      <argument>null</argument>
+      <argument>/var/www/html/TaskPlanner/app</argument>
+      <argument>UTF-8</argument>
+    </service>
+    <service id="templating.helper.translator" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\TranslatorHelper">
+      <tag name="templating.helper" alias="translator"/>
+      <argument type="service" id="translator"/>
+    </service>
+    <service id="templating.helper.form" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\FormHelper">
+      <tag name="templating.helper" alias="form"/>
+      <argument type="service">
+        <service class="Symfony\Component\Form\FormRenderer" public="false">
+          <argument type="service">
+            <service class="Symfony\Component\Form\Extension\Templating\TemplatingRendererEngine" public="false">
+              <argument type="service" id="debug.templating.engine.php"/>
+              <argument type="collection">
+                <argument>FrameworkBundle:Form</argument>
+              </argument>
+            </service>
+          </argument>
+          <argument type="service" id="security.csrf.token_manager" on-invalid="null"/>
+        </service>
+      </argument>
+    </service>
+    <service id="templating.helper.stopwatch" class="Symfony\Bundle\FrameworkBundle\Templating\Helper\StopwatchHelper">
+      <tag name="templating.helper" alias="stopwatch"/>
+      <argument type="service" id="debug.stopwatch" on-invalid="ignore"/>
+    </service>
+    <service id="templating.globals" class="Symfony\Bundle\FrameworkBundle\Templating\GlobalVariables">
+      <argument type="service" id="service_container"/>
+    </service>
     <service id="validator" class="Symfony\Component\Validator\Validator\ValidatorInterface">
       <factory service="validator.builder" method="getValidator"/>
     </service>
@@ -2159,7 +2219,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>576baccce4c564.99456466</argument>
+            <argument>577e7aad10b775.09237026</argument>
           </service>
         </argument>
       </argument>
@@ -2442,7 +2502,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>576baccce4c564.99456466</argument>
+            <argument>577e7aad10b775.09237026</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -2846,6 +2906,24 @@
             <argument>true</argument>
           </service>
         </argument>
+        <argument key="php" type="service">
+          <service class="Assetic\Factory\Loader\CachedFormulaLoader" public="false">
+            <tag name="assetic.formula_loader" alias="php"/>
+            <tag name="assetic.templating.php"/>
+            <argument type="service">
+              <service class="Symfony\Bundle\AsseticBundle\Factory\Loader\AsseticHelperFormulaLoader" public="false">
+                <tag name="assetic.templating.php"/>
+                <argument type="service" id="assetic.asset_factory"/>
+              </service>
+            </argument>
+            <argument type="service">
+              <service class="Assetic\Cache\ConfigCache" public="false">
+                <argument>/var/www/html/TaskPlanner/app/cache/dev/assetic/config</argument>
+              </service>
+            </argument>
+            <argument>true</argument>
+          </service>
+        </argument>
       </argument>
       <call method="addResource">
         <argument type="service">
@@ -2859,6 +2937,19 @@
           </service>
         </argument>
         <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource" public="false">
+            <tag name="assetic.templating.php"/>
+            <tag name="assetic.formula_resource" loader="php"/>
+            <argument type="service" id="templating.loader"/>
+            <argument></argument>
+            <argument>/var/www/html/TaskPlanner/app/Resources/views</argument>
+            <argument>/\.[^.]+\.php$/</argument>
+          </service>
+        </argument>
+        <argument>php</argument>
       </call>
     </service>
     <service id="assetic.asset_factory" class="Symfony\Bundle\AsseticBundle\Factory\AssetFactory" public="false">
@@ -2878,6 +2969,12 @@
           </service>
         </argument>
       </call>
+    </service>
+    <service id="assetic.helper.dynamic" class="Symfony\Bundle\AsseticBundle\Templating\DynamicAsseticHelper">
+      <tag name="assetic.templating.php"/>
+      <tag name="templating.helper" alias="assetic"/>
+      <argument type="service" id="templating.helper.router"/>
+      <argument type="service" id="assetic.asset_factory"/>
     </service>
     <service id="assetic.filter.cssrewrite" class="Assetic\Filter\CssRewriteFilter">
       <tag name="assetic.filter" alias="cssrewrite"/>
@@ -3482,10 +3579,48 @@
     <service id="templating.loader" class="Symfony\Bundle\FrameworkBundle\Templating\Loader\FilesystemLoader">
       <argument type="service" id="templating.locator"/>
     </service>
-    <service id="templating" class="Symfony\Bundle\TwigBundle\TwigEngine">
-      <argument type="service" id="twig"/>
+    <service id="templating" class="Symfony\Bundle\FrameworkBundle\Templating\DelegatingEngine">
+      <argument type="service" id="service_container"/>
+      <argument type="collection"/>
+      <call method="addEngine">
+        <argument type="service">
+          <service class="Symfony\Bundle\TwigBundle\TwigEngine" public="false">
+            <argument type="service" id="twig"/>
+            <argument type="service" id="templating.name_parser"/>
+            <argument type="service" id="templating.locator"/>
+          </service>
+        </argument>
+      </call>
+      <call method="addEngine">
+        <argument type="service" id="debug.templating.engine.php"/>
+      </call>
+    </service>
+    <service id="debug.templating.engine.php" class="Symfony\Bundle\FrameworkBundle\Templating\TimedPhpEngine">
       <argument type="service" id="templating.name_parser"/>
-      <argument type="service" id="templating.locator"/>
+      <argument type="service" id="service_container"/>
+      <argument type="service" id="templating.loader"/>
+      <argument type="service" id="debug.stopwatch"/>
+      <argument type="service" id="templating.globals"/>
+      <call method="setCharset">
+        <argument>UTF-8</argument>
+      </call>
+      <call method="setHelpers">
+        <argument type="collection">
+          <argument key="assets">templating.helper.assets</argument>
+          <argument key="router">templating.helper.router</argument>
+          <argument key="slots">templating.helper.slots</argument>
+          <argument key="request">templating.helper.request</argument>
+          <argument key="session">templating.helper.session</argument>
+          <argument key="actions">templating.helper.actions</argument>
+          <argument key="code">templating.helper.code</argument>
+          <argument key="translator">templating.helper.translator</argument>
+          <argument key="form">templating.helper.form</argument>
+          <argument key="stopwatch">templating.helper.stopwatch</argument>
+          <argument key="logout_url">templating.helper.logout_url</argument>
+          <argument key="security">templating.helper.security</argument>
+          <argument key="assetic">assetic.helper.dynamic</argument>
+        </argument>
+      </call>
     </service>
     <service id="translator" class="Symfony\Component\Translation\DataCollectorTranslator">
       <argument type="service">

@@ -22,38 +22,38 @@ class __TwigTemplate_1e35ab24c2c17f70d59ed67d0632244a5aeec7784b190830900e13cafdc
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $__internal_6ac56ecd45e5a3fd6843c63c4de34ea3e81524744385649c7172ca2d0d101e25 = $this->env->getExtension("native_profiler");
-        $__internal_6ac56ecd45e5a3fd6843c63c4de34ea3e81524744385649c7172ca2d0d101e25->enter($__internal_6ac56ecd45e5a3fd6843c63c4de34ea3e81524744385649c7172ca2d0d101e25_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "Task/edit.html.twig"));
+        $__internal_1f2806b88e8b628e13c39f623af5d50c90f1261a54651c4f642980365cfd1787 = $this->env->getExtension("native_profiler");
+        $__internal_1f2806b88e8b628e13c39f623af5d50c90f1261a54651c4f642980365cfd1787->enter($__internal_1f2806b88e8b628e13c39f623af5d50c90f1261a54651c4f642980365cfd1787_prof = new Twig_Profiler_Profile($this->getTemplateName(), "template", "Task/edit.html.twig"));
 
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
-        $__internal_6ac56ecd45e5a3fd6843c63c4de34ea3e81524744385649c7172ca2d0d101e25->leave($__internal_6ac56ecd45e5a3fd6843c63c4de34ea3e81524744385649c7172ca2d0d101e25_prof);
+        $__internal_1f2806b88e8b628e13c39f623af5d50c90f1261a54651c4f642980365cfd1787->leave($__internal_1f2806b88e8b628e13c39f623af5d50c90f1261a54651c4f642980365cfd1787_prof);
 
     }
 
     // line 3
     public function block_title($context, array $blocks = array())
     {
-        $__internal_f0b27b43635568e2d1ec64eccc1212d9b82e1aa77ad2018714f6bb376fdb20b3 = $this->env->getExtension("native_profiler");
-        $__internal_f0b27b43635568e2d1ec64eccc1212d9b82e1aa77ad2018714f6bb376fdb20b3->enter($__internal_f0b27b43635568e2d1ec64eccc1212d9b82e1aa77ad2018714f6bb376fdb20b3_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
+        $__internal_a5445ae054d67b51829d7e993f57df0f43284664e9d1ba12fa2efa6fdf29b74a = $this->env->getExtension("native_profiler");
+        $__internal_a5445ae054d67b51829d7e993f57df0f43284664e9d1ba12fa2efa6fdf29b74a->enter($__internal_a5445ae054d67b51829d7e993f57df0f43284664e9d1ba12fa2efa6fdf29b74a_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "title"));
 
         echo "app:Resources:Task:edit";
         
-        $__internal_f0b27b43635568e2d1ec64eccc1212d9b82e1aa77ad2018714f6bb376fdb20b3->leave($__internal_f0b27b43635568e2d1ec64eccc1212d9b82e1aa77ad2018714f6bb376fdb20b3_prof);
+        $__internal_a5445ae054d67b51829d7e993f57df0f43284664e9d1ba12fa2efa6fdf29b74a->leave($__internal_a5445ae054d67b51829d7e993f57df0f43284664e9d1ba12fa2efa6fdf29b74a_prof);
 
     }
 
     // line 5
     public function block_body($context, array $blocks = array())
     {
-        $__internal_090d7bc9480bb7ce22310e6743b46cb1ec88859fb013e09ba0b712db0abd2647 = $this->env->getExtension("native_profiler");
-        $__internal_090d7bc9480bb7ce22310e6743b46cb1ec88859fb013e09ba0b712db0abd2647->enter($__internal_090d7bc9480bb7ce22310e6743b46cb1ec88859fb013e09ba0b712db0abd2647_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
+        $__internal_ac20c63f6f3735576fe1010e45c4ed5d28ee09c3f8423e22759567a516307092 = $this->env->getExtension("native_profiler");
+        $__internal_ac20c63f6f3735576fe1010e45c4ed5d28ee09c3f8423e22759567a516307092->enter($__internal_ac20c63f6f3735576fe1010e45c4ed5d28ee09c3f8423e22759567a516307092_prof = new Twig_Profiler_Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
         echo "    
     ";
         // line 7
-        if ((twig_date_format_filter($this->env, "now", "Y-m-d") > twig_date_format_filter($this->env, $this->getAttribute((isset($context["deadline"]) ? $context["deadline"] : $this->getContext($context, "deadline")), "date", array()), "Y-m-d"))) {
+        if ($this->getAttribute((isset($context["task"]) ? $context["task"] : $this->getContext($context, "task")), "isTaskOverdue", array())) {
             // line 8
             echo "        ";
             echo             $this->env->getExtension('form')->renderer->renderBlock((isset($context["form"]) ? $context["form"] : $this->getContext($context, "form")), 'form');
@@ -64,7 +64,7 @@ class __TwigTemplate_1e35ab24c2c17f70d59ed67d0632244a5aeec7784b190830900e13cafdc
         echo "    
 ";
         
-        $__internal_090d7bc9480bb7ce22310e6743b46cb1ec88859fb013e09ba0b712db0abd2647->leave($__internal_090d7bc9480bb7ce22310e6743b46cb1ec88859fb013e09ba0b712db0abd2647_prof);
+        $__internal_ac20c63f6f3735576fe1010e45c4ed5d28ee09c3f8423e22759567a516307092->leave($__internal_ac20c63f6f3735576fe1010e45c4ed5d28ee09c3f8423e22759567a516307092_prof);
 
     }
 
@@ -89,7 +89,7 @@ class __TwigTemplate_1e35ab24c2c17f70d59ed67d0632244a5aeec7784b190830900e13cafdc
 /* */
 /* {% block body %}*/
 /*     */
-/*     {% if "now"|date('Y-m-d') > deadline.date|date('Y-m-d') %}*/
+/*     {% if task.isTaskOverdue %}*/
 /*         {{ form(form) }}*/
 /*     {% endif %}*/
 /*     */

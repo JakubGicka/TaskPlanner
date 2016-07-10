@@ -285,4 +285,15 @@ class Task
     {
         return $this->category;
     }
+    
+    public function isTaskOverdue()
+    {
+        if ("now"|date('Y-m-d') > task.deadline|date('Y-m-d')){
+            return false;
+            
+        } else{
+            return true;
+        }
+    }
+    
 }

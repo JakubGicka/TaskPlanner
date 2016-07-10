@@ -4,7 +4,7 @@
 
 {% block body %}
     
-    {% if "now"|date('Y-m-d') > deadline.date|date('Y-m-d') %}
+    {% if task.isTaskOverdue %}
         {{ form(form) }}
     {% endif %}
     
