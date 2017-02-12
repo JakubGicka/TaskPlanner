@@ -27,7 +27,7 @@ class TaskController extends Controller
         
         $form = $this
                 ->createFormBuilder($task)
-                //->setAction($this->generateUrl('Task_create'))  //jeśli nie ma action, to wysyła się na tem sam adres
+                //->setAction($this->generateUrl('Task_create'))  //jeśli nie ma action, to wysyła się na ten sam adres
                 ->add('category', 'choice', array('label'=>'Category',
                 'choices'=>array('Home'=>'Home', 
                     'Job'=>'Job', 

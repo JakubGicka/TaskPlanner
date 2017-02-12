@@ -5,6 +5,7 @@
 {% block body %}    
     {% for task in tasks %}
         {{ include(':Task:show.html.twig', {'task': task} )}}
+        <p></br></p>
     {% else %}
         <p>No tasks found</p>
     {% endfor %}
